@@ -1,4 +1,5 @@
 # blog-project
-This is first ever django project based on "Try Django 1.9" Guide by CodingEntrepreneurs  
+My first real-programming practice using Django environment aimed of obtaining entry-level coding skills.
 
-First real-programming practice in Django environment aimed of obtaining entry-level coding skills
+Back-end part is based on "Try Django 1.9" Guide by CodingEntrepreneurs. 
+
