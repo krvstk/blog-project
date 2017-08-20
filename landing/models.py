@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
+from unidecode import unidecode
 
 
 from django.utils.text import slugify
@@ -31,7 +32,7 @@ def upload_location(instance, filename):
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     title = models.CharField(max_length=120)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=50, unique=True, blank=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True,
                               blank=True,
@@ -58,6 +59,11 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["-timestamp", "-updated"]
+
+    def save(self):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.title))
+        super(Post, self).save()
 
 
 def create_slug(instance, new_slug=None):
