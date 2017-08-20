@@ -55,7 +55,8 @@ def post_list(request):
             Q(user__first_name__icontains=query) |
             Q(user__last_name__icontains=query)
         ).distinct()
-    paginator = Paginator(queryset_list, 2)  # Show 10 contacts per page
+
+    paginator = Paginator(queryset_list, 10)  # Show 10 contacts per page
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     try:
@@ -84,7 +85,7 @@ def post_update(request, slug=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        messages.success(request, "<a href='#'>Item</a> Saved", extra_tags='html_safe')
+        messages.success(request, "Item Saved")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
@@ -102,3 +103,17 @@ def post_delete(request, slug=None):
     instance.delete()
     messages.success(request, "Successfully deleted")
     return redirect("posts:list")
+
+
+def post_about(request):
+    context = {
+        "title": "About me",
+    }
+    return render(request, "about.html", context)
+
+
+def post_contact(request):
+    context = {
+        "title": "Contact",
+    }
+    return render(request, "contact.html", context)
