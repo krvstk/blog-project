@@ -40,6 +40,7 @@ class Post(models.Model):
                               height_field="height_field")
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
+    preview_content = models.TextField(blank=True, default='')
     content = RichTextUploadingField(blank=True, default='')
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)

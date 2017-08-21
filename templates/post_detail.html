@@ -13,7 +13,7 @@
 
 <div class='col-sm-8 col-sm-offset-2' id="detail_view">
     {% if instance.image %}
-    <img src='{{ instance.image.url }}' class='img-responsive' />
+    <center><img src='{{ instance.image.url }}' class='img-responsive' /></center>
     {% endif %}
 <h1><div class="heading">{{ title }} </div></h1><small>{% if instance.draft %} <span style='color:red;'> Draft</span> {% endif %}<div class="publish_date">{{ instance.publish }}</div></small></h>
 {% if instance.user.get_full_name %}
