@@ -10,11 +10,13 @@ Body: Source Sans Pro
 */
 
 ul {
-    font-family: Merriweather;
+    font-family: cormorant;
 }
 
 .text {
-    font-family: Times;
+    font-family: vollkorn;
+    font-size: 130%;
+
 }
 
 .heading {
@@ -23,18 +25,19 @@ ul {
 
 .publish_date {
     float: right;
-    font-family: Georgia;
+    font-family: cormorant;
     font-style: italic;
+    font-size: 130%;
 }
 
 .author {
-    font-family: Georgia;
+    font-family: vollkorn;
     font-weight: bold;
+    font-size: 130%;
 }
 
 body {
     margin: 0;
-    font-family: Source Sans Pro;
 }
 
 .footer {
@@ -97,7 +100,7 @@ a:hover{
 }
 
 .main_button:hover {
-    background-color: rgba(255, 183, 160, 0.5);
+    background-color: rgb(255, 183, 160, 0.5);
 }
 
 .contact_button {
@@ -105,7 +108,7 @@ a:hover{
     transition-duration: 1s;
 }
 .contact_button:hover {
-    background-color: rgba(34, 126, 163, 0.5);
+    background-color: rgba(34, 126, 163, 0.4);
 }
 
 .about_button {
@@ -113,7 +116,7 @@ a:hover{
 }
 
 .about_button:hover {
-    background-color: rgba(162, 214, 107, 0.5);
+    background-color: rgba(162, 214, 107, 0.4);
 }
 
 .back-to-top {
@@ -125,7 +128,7 @@ a:hover{
     padding:20px;
     color: white;
     text-decoration: none;
-    font-family: Source Sans Pro;
+    font-family: cormorant;
     border-radius: 7px;
     transition-duration: 0.5s;
 }
