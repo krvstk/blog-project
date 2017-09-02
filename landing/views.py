@@ -70,7 +70,7 @@ def post_list(request):
 
     context = {
         "object_list": queryset,
-        "title": "List",
+        "title": "Blog",
         "page_request_var": page_request_var,
         "today": today
     }
@@ -117,3 +117,10 @@ def post_contact(request):
         "title": "Contact",
     }
     return render(request, "contact.html", context)
+
+
+def post_home(request):
+    context = {
+        "title": "Home",
+    }
+    return render(request, "home.html", context)
