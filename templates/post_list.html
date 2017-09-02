@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+
+
+{% block head_title %}
+{{ title }} | {{ block.super }}
+{% endblock head_title %}
 {% block content %}
 
 
@@ -8,7 +13,9 @@
 
 {% for obj in object_list %}
 <div class="row">
+
   <div class="col-sm-12">
+
     <div class="thumbnail">
         {% if obj.image %}
          <img src='{{ obj.image.url }}' class='img-responsive' />
@@ -18,7 +25,7 @@
         <h1><a class="heading" href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a></h1>
         <div class="publish_date"> {{ obj.publish }} </div>
         {% if obj.user.get_full_name %}<div class="author"><p>Author: {{ obj.user.get_full_name }}</p></div> {% endif %}
-        <div class="text"><p>{{ obj.preview_content|safe|truncatechars:300 }}</p></div> </br>
+        <div class="text preview_content"><p>{{ obj.preview_content|safe|truncatechars:300 }}</p></div> </br>
         <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary btn-lg" role="button">View</a></p>
       </div>
     </div>

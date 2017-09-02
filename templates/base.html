@@ -4,8 +4,10 @@
 <html>
 <head>
 
+
+<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <link rel="shortcut icon" type="image/png" href='{% static "img/favicon/favicon.ico" %}'/>
-<title>{% block head_title %}Dolphin{% endblock head_title %}</title>
+<title>{% block head_title %}Blyzniuk Evhen{% endblock head_title %}</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,13 +21,18 @@
 </style>
 </head>
 <body>
-<div class="nav" id="menu">
-<ul>
-  <li><a class="main_button" href="{% url 'posts:list' %}">HOME</a></li>
-  <li><a class="contact_button" href="{% url 'posts:contact' %}">CONTACT</a></li>
-  <li><a class="about_button" href="{% url 'posts:about' %}">ABOUT</a></li>
-</ul>
-
+<div class="page">
+  <nav class="menu">
+    <button class="menu_button" type="button">MENU</button>
+    <div class="menu_content">
+      <ul class="menu_list">
+        <li class="menu_item" id="main_button"><span class="menu_item-name">HOME</span><a class="menu_link" href="{% url 'posts:home' %}"></a></li>
+        <li class="menu_item" id="blog_button"><span class="menu_item-name">BLOG</span><a class="menu_link" href="{% url 'posts:list' %}"></a></li>
+        <li class="menu_item" id="contact_button"><span class="menu_item-name">CONTACT</span><a class="menu_link" href="{% url 'posts:contact' %}"></a></li>
+        <li class="menu_item" id="about_button"><span class="menu_item-name">ABOUT</span><a class="menu_link" href="{% url 'posts:about' %}"></a></li>
+      </ul>
+    </div>
+  </nav>
 </div>
 <br/>
 
@@ -47,6 +54,9 @@ fjs.parentNode.insertBefore(js, fjs);
 <a href="" class="back-to-top">Back to top</a>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="{% static 'js/global.js' %}"></script>
+<script src="{% static 'js/cke.js' %}"></script>
+
+
 
 
 <!-- Latest compiled and minified JavaScript -->
