@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load get_at_index %}
 
 {% block head_title %}
 {{ title }} | {{ block.super }}
@@ -9,11 +9,8 @@
 
 
 <div class='col-sm-8 col-sm-offset-2'>
-
-
 {% for obj in object_list %}
 <div class="row">
-
   <div class="col-sm-12">
 
     <div class="thumbnail">
@@ -26,7 +23,19 @@
         <div class="publish_date"> {{ obj.publish }} </div>
         {% if obj.user.get_full_name %}<div class="author"><p>Author: {{ obj.user.get_full_name }}</p></div> {% endif %}
         <div class="text preview_content"><p>{{ obj.preview_content|safe|truncatechars:300 }}</p></div> </br>
-        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary btn-lg" role="button">View</a></p>
+        <p class="button_view"><a href="{{ obj.get_absolute_url }}" class="btn btn-primary btn-lg" role="button">View</a></p>
+
+        {% if obj.tags.names %}
+        <ul class="post-tags">
+            {% for tag in obj.tags.names %}
+                <li>
+                <a class="tag-click" href="/tag/{{ obj.tags.slugs|get_at_index:forloop.counter0 }}">{{ tag }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <br/>
+
       </div>
     </div>
   </div>
@@ -35,23 +44,33 @@
 {% endfor %}
 
 
-<center><div class="pagination">
-    <span class="step-links">
+<center>
+
+<nav aria-label="Page navigation">
+{% if object_list.has_other_pages %}
+    <ul class="pagination">
         {% if object_list.has_previous %}
-            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+            <li><a aria-label="Previous" href="?page={{ object_list.previous_page_number}}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
         {% endif %}
-
-        <span class="current">
-            page {{ object_list.number }} of {{ object_list.paginator.num_pages }}
-        </span>
-
+        {% for pages in object_list.paginator.page_range %}
+            {% if object_list.number == pages %}
+                <li class="active"><span>{{ pages }}<span class="sr-only">(current)</span></span></li>
+            {% elif pages > object_list.number|add:'-3' and pages < object_list.number|add:'3' %}
+                <li><a href="?page={{pages}}">{{pages}}</a></li>
+            {% endif %}
+        {% endfor %}
         {% if object_list.has_next %}
-            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+                <li><a href="?page={{ object_list.next_page_number}}">&raquo;</a></li>
+        {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
         {% endif %}
-    </span>
-</div></center>
 
+{% endif %}
 </div>
+</center>
+
 
 
 {% endblock content %}

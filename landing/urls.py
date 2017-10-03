@@ -10,6 +10,7 @@ from .views import (
     post_about,
     post_contact,
     post_home,
+    search_by_tag,
 )
 
 urlpatterns = [
@@ -21,7 +22,5 @@ urlpatterns = [
     url(r'^blog/(?P<slug>[\w-]+)/$', post_detail, name='detail'),
     url(r'^blog/(?P<slug>[\w-]+)/edit/$', post_update, name='update'),
     url(r'^blog/(?P<slug>[\w-]+)/delete/$', post_delete),
-
-    #   url(r'^(?P<slug>[\w-]+)/contact/$', post_contact),
-    #url(r'^posts/$', "<appname>.views.<function_name>"),
+    url(r'^tag/(?P<tag>[a-zA-Z0-9_-]+)/$', search_by_tag, name='search'),
 ]

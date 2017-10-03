@@ -8,8 +8,17 @@
 {% block content %}
 
 
+
 <div class='col-sm-8 col-sm-offset-2' id="detail_view">
-<h3> HELLO GUYS </h3>
+<h2 class="heading" id="home_heading">Blyzniuk Evhen</h2>
+<hr class="home-hr">
+<h4 class="text" id="home_sub_heading">Junior Automation QA Engineer</h4>
+<br>
+<p class="text" id="home_text">Привет, я занимаюсь разработкой автоматизированных тестов и изучением инструментов, упрощающих этот процесс. Знаком со многими видами тестирования, а так же имею опыт в написании различной тест-документации.</p>
+<p class="text" id="home_text">Вы можете ознакомиться с моими некоторыми опытами в разделе <a class="home_pages" href="{% url 'posts:list' %}">blog</a>, а если у Вас есть вопрос или предложение, можете выбрать удобный способ связи со мной на странице <a class="home_pages" href="{% url 'posts:contact' %}">contact</a>.
+</p>
+<p class="text" id="home_text">Больше инфомации обо мне, а так же об этом сайте можно найти в разделе <a class="home_pages" href="{% url 'posts:contact' %}">about</a>.</p>
+
 </div>
 
 

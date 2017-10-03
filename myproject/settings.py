@@ -24,12 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c9s^d+1u%ge!(wfk#0)i@494^bzpw(9#22))d73@n1=@8j)7!n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-        'dolph.lucky.net',
-        'www.dolph.lucky.net'
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -45,11 +42,13 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'taggit',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-#MIDDLEWARE = [
+
+# MIDDLEWARE = [
 #    'django.middleware.security.SecurityMiddleware',
 #    'django.contrib.sessions.middleware.SessionMiddleware',
 #    'django.middleware.common.CommonMiddleware',

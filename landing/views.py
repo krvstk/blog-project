@@ -20,6 +20,7 @@ def post_create(request):
         instance.save()
         # message success
         messages.success(request, "Successfully Created")
+        form.save_m2m()
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "form": form,
@@ -33,17 +34,23 @@ def post_detail(request, slug=None):
         if not request.user.is_staff or not request.user.is_superuser:
             raise Http404
     share_string = quote(instance.content)
+
+    tags = instance.tags.names()
+    slug_tags = instance.tags.slugs()
+
     context = {
         "title": instance.title,
         "instance": instance,
         "share_string": share_string,
+        "tags": tags,
+        "slug_tags": slug_tags,
     }
     return render(request, "post_detail.html", context)
 
 
 def post_list(request):
     today = timezone.now().date()
-    queryset_list = Post.objects.active()  # .order_by("-timestamp")
+    queryset_list = Post.objects.active()
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.all()
 
@@ -56,7 +63,7 @@ def post_list(request):
             Q(user__last_name__icontains=query)
         ).distinct()
 
-    paginator = Paginator(queryset_list, 10)  # Show 10 contacts per page
+    paginator = Paginator(queryset_list, 5)  # Show 10 contacts per page
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     try:
@@ -72,7 +79,7 @@ def post_list(request):
         "object_list": queryset,
         "title": "Blog",
         "page_request_var": page_request_var,
-        "today": today
+        "today": today,
     }
     return render(request, "post_list.html", context)
 
@@ -86,6 +93,7 @@ def post_update(request, slug=None):
         instance = form.save(commit=False)
         instance.save()
         messages.success(request, "Item Saved")
+        form.save_m2m()
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
@@ -124,3 +132,12 @@ def post_home(request):
         "title": "Home",
     }
     return render(request, "home.html", context)
+
+
+def search_by_tag(request, tag):
+    posts_with_tag = Post.objects.filter(tags__slug__in=[tag])
+    context = {
+        "title": "Search By Tag",
+        "posts_with_tag": posts_with_tag
+    }
+    return render(request, "tags.html", context)

@@ -7,15 +7,10 @@ from django.db import models
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 from unidecode import unidecode
+from taggit.managers import TaggableManager
 
 
 from django.utils.text import slugify
-
-# Create your models here.
-# MVC MODEL VIEW CONTROLLER
-
-# Post.objects.all()
-#Post.objects.create(user=user, title="title")
 
 
 class PostManager(models.Manager):
@@ -24,8 +19,6 @@ class PostManager(models.Manager):
 
 
 def upload_location(instance, filename):
-    #filebase, extension = filename.split(".")
-    # return "%s/%s.%s" %(instance.id, instance.id, extension)
     return "%s/%s" % (instance.id, filename)
 
 
@@ -46,7 +39,7 @@ class Post(models.Model):
     publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-
+    tags = TaggableManager()
     objects = PostManager()
 
     def __unicode__(self):

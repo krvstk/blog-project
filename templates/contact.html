@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 {% block head_title %}
 {{ title }} | {{ block.super }}
@@ -8,9 +8,43 @@
 {% block content %}
 
 
-<div class='col-sm-8 col-sm-offset-2' id="detail_view">
-<h3> Contact: </h3>
-Email krvstk@gmail.com
+<div class='col-sm-6 col-sm-offset-3' id="detail_view">
+<center>
+<ul class="icons-list">
+  <li>
+    <a href="mailto:krvstk@gmail.com" rel="nofollow" target="_blank" title="Отправьте мне электронное письмо">
+      <img src='{% static "img/icons/email2.png" %}' class="mail-icon"/></a>
+    <div class="text">
+      krvstk@gmail.com
+    </div>
+  </li>
+  <br>
+    <li>
+    <a href="skype:evhen.blyzniuk" rel="nofollow" target="_blank" title="Позвоните мне в Skype">
+      <img src='{% static "img/icons/skype2.png" %}'/></a>
+      <div class="text">
+    evhen.blyzniuk
+    </div>
+  </li>
+  <br>
+  <li>
+    <a href="https://github.com/krvstk/" rel="nofollow" target="_blank" title="Посмотрите мой github профиль">
+      <img src='{% static "img/icons/git2.png" %}'/></a>
+      <div class="text">
+      krvstk
+      </div>
+    </li>
+    <br>
+  <li>
+    <a href="https://www.linkedin.com/in/evhen-blyzniuk-ba706a111/" rel="nofollow" target="_blank" title="Ознакомьтесь с моим профилем в LinkedIn">
+      <img src='{% static "img/icons/linkedin2.png" %}'/></a>
+      <div class="text">
+    Blyzniuk Evhen
+    </div>
+  </li>
+</ul>
+</center>
+<br>
 </div>
 
 
