@@ -1,6 +1,6 @@
 /* FONTS */
 
-/* @font-face {
+ @font-face {
     font-family: 'vollkorn';
     src: url('vollkorn-webfont.woff2') format('woff2'),
          url('vollkorn-webfont.woff') format('woff');
@@ -23,7 +23,7 @@
     font-weight: normal;
     font-style: normal;
 }
-*/
+
 
 ul {
     font-family: vollkorn;
