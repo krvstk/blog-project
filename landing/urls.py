@@ -12,12 +12,12 @@ from .views import (
     post_home,
     search_by_tag,
 )
-
+## 
 urlpatterns = [
     url(r'^$', post_home, name='home'),
-    url(r'^blog/$', post_list, name='list'),
-    url(r'^about/$', post_about, name='about'),
-    url(r'^contact/$', post_contact, name='contact'),
+    url(r'^blog$', post_list, name='list'),
+    url(r'^about$', post_about, name='about'),
+    url(r'^contact$', post_contact, name='contact'),
     url(r'^create/$', post_create),
     url(r'^blog/(?P<slug>[\w-]+)/$', post_detail, name='detail'),
     url(r'^blog/(?P<slug>[\w-]+)/edit/$', post_update, name='update'),
