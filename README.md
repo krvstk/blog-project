@@ -3,3 +3,4 @@ My first real-programming practice using Django environment aimed of obtaining e
 
 Back-end part is based on "Try Django 1.9" Guide by CodingEntrepreneurs. 
 
+ss
