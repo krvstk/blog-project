@@ -2,24 +2,24 @@
 
 @font-face {
     font-family: 'vollkorn';
-    src: url('vollkorn-webfont.woff2') format('woff2'),
-         url('vollkorn-webfont.woff') format('woff');
+    src: url('../fonts/vollkorn-v7-latin_cyrillic-ext-regular.woff2') format('woff2'),
+         url('../fonts/vollkorn-v7-latin_cyrillic-ext-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'cormorantbold';
-    src: url('cormorant-bold-webfont.woff2') format('woff2'),
-         url('cormorant-bold-webfont.woff') format('woff');
+    font-family: 'cormorant';
+    src: url('../fonts/cormorant-v5-cyrillic-ext_cyrillic_latin_latin-ext-regular.woff2') format('woff2'),
+         url('../fonts/cormorant-v5-cyrillic-ext_cyrillic_latin_latin-ext-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'merriweatherregular';
-    src: url('merriweather-regular-webfont.woff2') format('woff2'),
-         url('merriweather-regular-webfont.woff') format('woff');
+    font-family: 'merriweather';
+    src: url('../fonts/merriweather-v17-cyrillic-ext_cyrillic_latin_latin-ext-regular.woff2') format('woff2'),
+         url('../fonts/merriweather-v17-cyrillic-ext_cyrillic_latin_latin-ext-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -36,7 +36,7 @@ ul {
 }
 
 .heading {
-    font-family: Merriweather;
+    font-family: merriweather;
 }
 
 .menu_button {

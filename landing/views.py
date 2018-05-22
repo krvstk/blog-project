@@ -75,6 +75,7 @@ def post_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)
 
+
     context = {
         "object_list": queryset,
         "title": "Blog",
@@ -114,24 +115,39 @@ def post_delete(request, slug=None):
 
 
 def post_about(request):
-    context = {
-        "title": "About me",
-    }
-    return render(request, "about.html", context)
+    if request.is_ajax():
+        return render(request, "about.html")
+    else:
+        context = {
+            "title": "About me",
+        }
+        return render(request, "about_extended.html", context)
 
 
 def post_contact(request):
-    context = {
-        "title": "Contact",
-    }
-    return render(request, "contact.html", context)
+    if request.is_ajax():
+        return render(request, "contact.html")
+    else:
+        context = {
+            "title": "Contact",
+        }
+        return render(request, "contact_extended.html", context)
 
-
-def post_home(request):
+def real_home(request):
     context = {
         "title": "Home",
     }
-    return render(request, "home.html", context)
+    return render(request, "home_extended.html", context)
+
+
+def post_home(request):
+    if request.is_ajax():
+        return render(request, "home.html")
+    else:
+        context = {
+            "title": "Home",
+        }
+        return render(request, "home_extended.html", context)
 
 
 def search_by_tag(request, tag):
@@ -141,3 +157,4 @@ def search_by_tag(request, tag):
         "posts_with_tag": posts_with_tag
     }
     return render(request, "tags.html", context)
+

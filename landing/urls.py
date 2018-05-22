@@ -11,10 +11,13 @@ from .views import (
     post_contact,
     post_home,
     search_by_tag,
+    real_home,
 )
+app_name="myproject"
 ## 
 urlpatterns = [
-    url(r'^$', post_home, name='home'),
+    url(r'^$', real_home, name='real_home'),
+    url(r'^home$', post_home, name='home'),
     url(r'^blog$', post_list, name='list'),
     url(r'^about$', post_about, name='about'),
     url(r'^contact$', post_contact, name='contact'),
