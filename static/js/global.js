@@ -37,3 +37,4 @@ function menu() {
     $menuContent.toggleClass('show');
   }
 }
+

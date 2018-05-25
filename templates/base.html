@@ -64,15 +64,15 @@ fjs.parentNode.insertBefore(js, fjs);
 <script src="{% static 'js/global.js' %}"></script>
 <script src="{% static 'js/cke.js' %}"></script>
 <script>
-        $(document).ready(function(){
-          $(".menu_link").click(function(){
-            $.ajax({url: $(this).data('url'), success: function(result){
-              $(".container").html(result);
-            $(".container").fadeOut(0).fadeIn(1000);
-              console.log(result);
-                          }});
-          });
-      })
-    </script> 
+  $(document).ready(function(){
+    $(".menu_link").click(function(){
+      $.ajax({url: $(this).data('url'), success: function(result){
+        $(".container").html(result);
+      $(".container").fadeOut(0).fadeIn(1000);
+        console.log(result);
+      }});
+    });
+  })
+</script> 
 </body>
 </html>

@@ -393,3 +393,5 @@ ul.icons-list li .text {
 #heading_tag_page:hover {
     background-color: #d1e2fc;
 }
+
+button:focus {outline:0;}

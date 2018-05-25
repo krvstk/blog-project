@@ -54,7 +54,7 @@ class Post(models.Model):
     class Meta:
         ordering = ["-timestamp", "-updated"]
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(unidecode(self.title))
         super(Post, self).save()
