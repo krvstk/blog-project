@@ -31,10 +31,10 @@
     <button class="menu_button" type="button">MENU</button>
     <div class="menu_content">
       <ul class="menu_list">
-        <button class="menu_item" id="main_button"><span class="menu_item-name">HOME</span><a class="menu_link" data-url="{% url 'posts:home' %}"></a></button>
-        <button class="menu_item" id="blog_button"><span class="menu_item-name">BLOG</span><a class="menu_link" href="{% url 'posts:list' %}" data-url="{% url 'posts:list' %}"></a></button>
-        <button class="menu_item" id="contact_button"><span class="menu_item-name">CONTACT</span><a class="menu_link" data-url="{% url 'posts:contact' %}"></a></button>
-        <button class="menu_item" id="about_button"><span class="menu_item-name">ABOUT</span><a class="menu_link" data-url="{% url 'posts:about' %}"></a></button>
+        <button class="menu_item" id="main_button"><span class="menu_item-name">HOME</span><a class="menu_link" data-url="{% url 'posts:home' %}" data-title="Home"></a></button>
+        <button class="menu_item" id="blog_button"><span class="menu_item-name">BLOG</span><a class="menu_link" data-url="{% url 'posts:list' %}" data-title="Blog"></a></button>
+        <button class="menu_item" id="contact_button"><span class="menu_item-name">CONTACT</span><a class="menu_link" data-url="{% url 'posts:contact' %}" data-title="Contact"></a></button>
+        <button class="menu_item" id="about_button"><span class="menu_item-name">ABOUT</span><a class="menu_link" data-url="{% url 'posts:about' %}" data-title="About"></a></button>
       </ul>
     </div>
   </nav>
@@ -65,7 +65,11 @@ fjs.parentNode.insertBefore(js, fjs);
 <script src="{% static 'js/cke.js' %}"></script>
 <script>
   $(document).ready(function(){
-    $(".menu_link").click(function(){
+    $(".menu_link").on("click", function(event){
+      event.preventDefault();
+      //console.log($(this).data('title') + " | Blyzniuk Yevhen");
+      window.history.pushState("", "", '/');
+      document.title = $(this).data('title') + " | Blyzniuk Yevhen";
       $.ajax({url: $(this).data('url'), success: function(result){
         $(".container").html(result);
       $(".container").fadeOut(0).fadeIn(1000);

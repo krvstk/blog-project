@@ -12,3 +12,7 @@ ss
 {% block head_title %}
 {{ title }} | {{ block.super }}
 {% endblock head_title %}
+
+
+
+{{ instance.title }} | {{ block.super }}
