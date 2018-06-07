@@ -27,8 +27,7 @@ SECRET_KEY = 'c9s^d+1u%ge!(wfk#0)i@494^bzpw(9#22))d73@n1=@8j)7!n'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-	'www.dolph.lucky.net',
-	'dolph.lucky.net',
+	'blyzniuk.lucky.net',
 ]
 
 
