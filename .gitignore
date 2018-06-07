@@ -24,3 +24,9 @@ landing/migrations/*
 # manage.py
 
 manage.py
+
+
+*.pyc
+*.pyo
+*.mo
+*~
