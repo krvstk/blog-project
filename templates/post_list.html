@@ -1,9 +1,5 @@
-{% extends "base.html" %}
 {% load get_at_index %}
 
-{% block head_title %}
-{{ title }} | {{ block.super }}
-{% endblock head_title %}
 {% block content %}
 
 
@@ -50,7 +46,8 @@
 {% if object_list.has_other_pages %}
     <ul class="pagination">
         {% if object_list.has_previous %}
-            <li><a aria-label="Previous" href="?page={{ object_list.previous_page_number}}">&laquo;</a></li>
+            <li class="paginli"><a class="pagina" aria-label="Previous" href="#" 
+                data-url="{% url 'posts:list' %}?page={{ object_list.previous_page_number}}" data-title="Page {{ object_list.previous_page_number}}">&laquo;</a></li>
         {% else %}
             <li class="disabled"><span>&laquo;</span></li>
         {% endif %}
@@ -58,19 +55,37 @@
             {% if object_list.number == pages %}
                 <li class="active"><span>{{ pages }}<span class="sr-only">(current)</span></span></li>
             {% elif pages > object_list.number|add:'-3' and pages < object_list.number|add:'3' %}
-                <li><a href="?page={{pages}}">{{pages}}</a></li>
+                <li class="paginli"><a class="pagina" href="#" 
+                    data-url="{% url 'posts:list' %}?page={{pages}}" data-title="Page {{pages}}">{{pages}}</a></li>
             {% endif %}
         {% endfor %}
         {% if object_list.has_next %}
-                <li><a href="?page={{ object_list.next_page_number}}">&raquo;</a></li>
+                <li class="paginli"><a class="pagina" href="#" 
+                    data-url="{% url 'posts:list' %}?page={{object_list.next_page_number}}" data-title="Page {{object_list.next_page_number}}">&raquo;</a></li>
         {% else %}
                 <li class="disabled"><span>&raquo;</span></li>
         {% endif %}
 
 {% endif %}
-</div>
-</center>
 
+</center>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("li.paginli").click(function(event){
+      event.preventDefault();
+      window.history.pushState("", "", '/');
+      var $a = $(this).find("a.pagina");
+      document.title = $a.data('title') + " | Blyzniuk Yevhen";
+      $.ajax({url: $a.data('url'), success: function(result){
+        $(".container").html(result);
+      $(".container").fadeOut(0).fadeIn(1000);
+        console.log(result);
+      }});
+    });
+  })
+</script>
 
 
 {% endblock content %}

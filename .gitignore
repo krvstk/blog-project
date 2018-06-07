@@ -1,4 +1,4 @@
-# setting
+o# setting
 
 myproject/settings.py
 
@@ -31,8 +31,4 @@ manage.py
 *.mo
 *~
 
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
-
-uwsgi.ini
+deployment/django.conf
