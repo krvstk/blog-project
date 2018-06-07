@@ -1,1 +1,26 @@
-wef
+# setting
+
+myproject/settings.py
+
+# database
+
+mydatabase
+
+# logs
+
+*.log
+
+# migrations
+
+landing/migrations
+landing/migrations/*
+
+# pycache
+
+*/__pycache__
+*/__pycache__/*
+
+
+# manage.py
+
+manage.py
