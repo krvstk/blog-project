@@ -6,6 +6,7 @@ from myproject import settings
 
 urlpatterns = [
     url(r'^', include("landing.urls", namespace='posts')),
+    url(r'^api/posts/', include("landing.api.urls", namespace='posts-api')),
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

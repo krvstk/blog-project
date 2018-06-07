@@ -49,6 +49,7 @@ def post_detail(request, slug=None):
 
 
 def post_list(request):
+    
     today = timezone.now().date()
     queryset_list = Post.objects.active()
     if request.user.is_staff or request.user.is_superuser:
@@ -63,7 +64,7 @@ def post_list(request):
             Q(user__last_name__icontains=query)
         ).distinct()
 
-    paginator = Paginator(queryset_list, 10)  # Show 10 contacts per page
+    paginator = Paginator(queryset_list, 2)  # Show 10 contacts per page
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     try:
@@ -75,14 +76,17 @@ def post_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)
 
+
     context = {
         "object_list": queryset,
         "title": "Blog",
         "page_request_var": page_request_var,
         "today": today,
     }
-    return render(request, "post_list.html", context)
-
+    if request.is_ajax():
+        return render(request, "post_list.html", context)
+    else:  
+        return render(request, "post_list_extended.html", context)
 
 def post_update(request, slug=None):
     if not request.user.is_staff or not request.user.is_superuser:
@@ -114,24 +118,39 @@ def post_delete(request, slug=None):
 
 
 def post_about(request):
-    context = {
-        "title": "About me",
-    }
-    return render(request, "about.html", context)
+    if request.is_ajax():
+        return render(request, "about.html")
+    else:
+        context = {
+            "title": "About me",
+        }
+        return render(request, "about_extended.html", context)
 
 
 def post_contact(request):
-    context = {
-        "title": "Contact",
-    }
-    return render(request, "contact.html", context)
+    if request.is_ajax():
+        return render(request, "contact.html")
+    else:
+        context = {
+            "title": "Contact",
+        }
+        return render(request, "contact_extended.html", context)
 
-
-def post_home(request):
+def real_home(request):
     context = {
         "title": "Home",
     }
-    return render(request, "home.html", context)
+    return render(request, "home_extended.html", context)
+
+
+def post_home(request):
+    if request.is_ajax():
+        return render(request, "home.html")
+    else:
+        context = {
+            "title": "Home",
+        }
+        return render(request, "home_extended.html", context)
 
 
 def search_by_tag(request, tag):
@@ -141,3 +160,4 @@ def search_by_tag(request, tag):
         "posts_with_tag": posts_with_tag
     }
     return render(request, "tags.html", context)
+
