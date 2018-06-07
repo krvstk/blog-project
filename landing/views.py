@@ -84,10 +84,9 @@ def post_list(request):
         "today": today,
     }
     if request.is_ajax():
-        return render(request, "post_list.html", {"object_list": queryset})
+        return render(request, "post_list.html", context)
     else:  
         return render(request, "post_list_extended.html", context)
-
 
 def post_update(request, slug=None):
     if not request.user.is_staff or not request.user.is_superuser:

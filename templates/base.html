@@ -14,10 +14,7 @@
 <link rel="mask-icon" href='{% static "img/favicon/safari-pinned-tab.svg" color="#5bbad5" %}'/>
 <meta name="theme-color" content="#ffffff"><title>{% block head_title %}Blyzniuk Yevhen{% endblock head_title %}</title>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
 
 
 <link rel='stylesheet' href='{% static "css/base.css" %}' />
@@ -31,10 +28,22 @@
     <button class="menu_button" type="button">MENU</button>
     <div class="menu_content">
       <ul class="menu_list">
-        <button class="menu_item" id="main_button"><span class="menu_item-name">HOME</span><a class="menu_link" data-url="{% url 'posts:home' %}" data-title="Home"></a></button>
-        <button class="menu_item" id="blog_button"><span class="menu_item-name">BLOG</span><a class="menu_link" data-url="{% url 'posts:list' %}" data-title="Blog"></a></button>
-        <button class="menu_item" id="contact_button"><span class="menu_item-name">CONTACT</span><a class="menu_link" data-url="{% url 'posts:contact' %}" data-title="Contact"></a></button>
-        <button class="menu_item" id="about_button"><span class="menu_item-name">ABOUT</span><a class="menu_link" data-url="{% url 'posts:about' %}" data-title="About"></a></button>
+        <button class="menu_item" id="main_button">
+          <span class="menu_item-name">HOME</span>
+          <a class="menu_link" data-url="{% url 'posts:home' %}" data-title="Home"></a>
+        </button>
+        <button class="menu_item" id="blog_button">
+          <span class="menu_item-name">BLOG</span>
+          <a class="menu_link" data-url="{% url 'posts:list' %}" data-title="Blog"></a>
+        </button>
+        <button class="menu_item" id="contact_button">
+          <span class="menu_item-name">CONTACT</span>
+          <a class="menu_link" data-url="{% url 'posts:contact' %}" data-title="Contact"></a>
+        </button>
+        <button class="menu_item" id="about_button">
+          <span class="menu_item-name">ABOUT</span>
+          <a class="menu_link" data-url="{% url 'posts:about' %}" data-title="About"></a>
+        </button>
       </ul>
     </div>
   </nav>
@@ -65,12 +74,12 @@ fjs.parentNode.insertBefore(js, fjs);
 <script src="{% static 'js/cke.js' %}"></script>
 <script>
   $(document).ready(function(){
-    $(".menu_link").on("click", function(event){
+    $("button.menu_item").click(function(event){
       event.preventDefault();
-      //console.log($(this).data('title') + " | Blyzniuk Yevhen");
       window.history.pushState("", "", '/');
-      document.title = $(this).data('title') + " | Blyzniuk Yevhen";
-      $.ajax({url: $(this).data('url'), success: function(result){
+      var $a = $(this).find("a.menu_link");
+      document.title = $a.data('title') + " | Blyzniuk Yevhen";
+      $.ajax({url: $a.data('url'), success: function(result){
         $(".container").html(result);
       $(".container").fadeOut(0).fadeIn(1000);
         console.log(result);
